@@ -4,7 +4,7 @@ parallel.pl
 ファイルまたは標準入力からコマンドリストを読み込み並列実行するperlスクリプト。  
 並列実行するコマンドの最大数をコマンド引数から指定できます。
  (from [gist:4037338](https://gist.github.com/4037338))
- 
+
 使い方
 -----
 
@@ -40,7 +40,11 @@ command #4 done.
 参考
 --------
 
- 実は、xargs -P で同様のことができます。
+実は、xargs -P や GNU parallel で同様のことができます。
+
+```bash
+% cat commandlist.txt | parallel -P 3
+```
 
 ライセンス
 --------
