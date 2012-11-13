@@ -5,6 +5,9 @@ parallel.pl
 並列実行するコマンドの最大数をコマンド引数から指定できます。
  (from [gist:4037338](https://gist.github.com/4037338))
 
+xargs -P や GNU parallel でも同様のことができますが、perlスクリプト内で
+並列実行したい場合に本レポジトリのコードを流用できます。
+
 使い方
 -----
 
@@ -40,10 +43,23 @@ command #4 done.
 参考
 --------
 
-実は、xargs -P や GNU parallel で同様のことができます。
+xargs -P や GNU parallel でも同様のことができます。
+
+### xargs -P の利用 ###
+
+xargs の -i オプションを指定し sh -c {} に渡すとコマンドとして実行できます。  
+-t で実行されるコマンドを標準エラー出力に表示し、-P で並列数を指定できます。
 
 ```bash
-% cat commandlist.txt | parallel -P 3
+% cat commandlist.txt | sed 's/"/\\"/g' | xargs -t -P 3 -i sh -c {}
+```
+
+### GNU parallel の利用 ###
+
+-t で実行されるコマンドを標準エラー出力に表示し、-P で並列数を指定できます。
+
+```bash
+% cat commandlist.txt | parallel -t -P 3
 ```
 
 ライセンス
