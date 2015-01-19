@@ -40,6 +40,18 @@ command #4 done.
 % head -10 commandlist.txt | ./parallel.pl -3
 ```
 
+応用：複数ノードでの分散処理
+-----
+
+コマンドリスト内のジョブを複数のノードに振り分けて効率よく実行します。  
+各ノードでは1ジョブずつ実行し、終了したら次のジョブが投入されます。
+
+```bash
+% ./parallelhost.pl commandlist.txt
+```
+
+parallelhost.pl 内の ```@host_list``` で計算ノードリストを指定します。
+
 参考
 --------
 
@@ -65,7 +77,7 @@ xargs の -i オプションを指定し sh -c {} に渡すとコマンドとし
 ライセンス
 --------
 
-Copyright &copy; 2012 Yuki Naito
+Copyright &copy; 2012-2015 Yuki Naito
  ([@meso_cacase](http://twitter.com/meso_cacase))  
 This software is distributed under modified BSD license
  (http://www.opensource.org/licenses/bsd-license.php)
