@@ -36,7 +36,8 @@ foreach (@command_list){
 	chomp ;
 	if (my $pid = fork){
 		# 親プロセス
-		print "$pid	$_\n" ;
+		my $timestamp = timestamp() ;
+		print "[$timestamp]	$pid	$_\n" ;
 		$proc_max -- ;
 	} else {
 		# 子プロセス
@@ -52,5 +53,11 @@ foreach (@command_list){
 
 # 子プロセスが無くなる、つまりwaitが-1を返すまでwaitする
 while (wait != -1){ }
+} ;
+# ====================
+sub timestamp {  # タイムスタンプを 2000-01-01 00:00:00 の形式で出力
+my ($sec, $min, $hour, $mday, $mon, $year) = localtime ;
+return sprintf("%04d-%02d-%02d %02d:%02d:%02d",
+	$year+1900, $mon+1, $mday, $hour, $min, $sec) ;
 } ;
 # ====================

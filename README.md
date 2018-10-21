@@ -20,15 +20,15 @@ xargs -P や GNU parallel でも同様のことができますが、perlスク�
 結果：
 
 ```
-77268	sleep 7 ; echo "command #1 done."
-77269	sleep 2 ; echo "command #2 done."
-77270	sleep 2 ; echo "command #3 done."
-command #2 done.
+[2018-10-21 11:15:50]	29887	sleep 7 ; echo "command #1 done."
+[2018-10-21 11:15:50]	29888	sleep 2 ; echo "command #2 done."
+[2018-10-21 11:15:50]	29890	sleep 2 ; echo "command #3 done."
 command #3 done.
-77277	sleep 3 ; echo "command #4 done."
-77278	sleep 4 ; echo "command #5 done."
+command #2 done.
+[2018-10-21 11:15:52]	29896	sleep 3 ; echo "command #4 done."
+[2018-10-21 11:15:52]	29897	sleep 4 ; echo "command #5 done."
 command #4 done.
-77283	sleep 3 ; echo "command #6 done."
+[2018-10-21 11:15:55]	29902	sleep 3 ; echo "command #6 done."
 (以下省略)
 ```
 
@@ -74,10 +74,10 @@ xargs の -i オプションを指定し sh -c {} に渡すとコマンドとし
 % cat commandlist.txt | parallel -t -P 3
 ```
 
-ライセンス
+License
 --------
 
-Copyright &copy; 2012-2015 Yuki Naito
+Copyright &copy; 2012-2018 Yuki Naito
  ([@meso_cacase](http://twitter.com/meso_cacase))  
 This software is distributed under
 [modified BSD license](http://www.opensource.org/licenses/bsd-license.php).
