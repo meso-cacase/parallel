@@ -5,7 +5,7 @@ parallel.pl
 並列実行するコマンドの最大数をコマンド引数から指定できます。
  (from [gist:4037338](https://gist.github.com/4037338))
 
-xargs -P や GNU parallel でも同様のことができますが、perlスクリプト内で  
+`xargs -P` や GNU `parallel` でも同様のことができますが、perlスクリプト内で  
 並列実行したい場合に本レポジトリのコードを流用できます。
 
 使い方
@@ -50,25 +50,24 @@ command #4 done.
 % ./parallelhost.pl commandlist.txt
 ```
 
-parallelhost.pl 内の ```@host_list``` で計算ノードリストを指定します。
+`parallelhost.pl` 内の ```@host_list``` で計算ノードリストを指定します。
 
 参考
 --------
-
-xargs -P や GNU parallel でも同様のことができます。
+`xargs -P` や GNU `parallel` でも同様のことができます。
 
 ### xargs -P の利用 ###
 
-xargs の -i オプションを指定し sh -c {} に渡すとコマンドとして実行できます。  
--t で実行されるコマンドを標準エラー出力に表示し、-P で並列数を指定できます。
+`xargs` を使って `sh -c {}` に渡すとコマンドとして実行できます。  
+`-t` で実行されるコマンドを標準エラー出力に表示し、`-P` で並列数を指定できます。
 
 ```bash
-% cat commandlist.txt | sed 's/"/\\"/g' | xargs -t -P 3 -i sh -c {}
+% cat commandlist.txt | xargs -t -P 3 -I{} sh -c {}
 ```
 
 ### GNU parallel の利用 ###
 
--t で実行されるコマンドを標準エラー出力に表示し、-P で並列数を指定できます。
+`-t` で実行されるコマンドを標準エラー出力に表示し、`-P` で並列数を指定できます。
 
 ```bash
 % cat commandlist.txt | parallel -t -P 3
@@ -77,7 +76,7 @@ xargs の -i オプションを指定し sh -c {} に渡すとコマンドとし
 License
 --------
 
-Copyright &copy; 2012-2018 Yuki Naito
- ([@meso_cacase](http://twitter.com/meso_cacase))  
+Copyright &copy; 2012-2024 Yuki Naito
+ ([@meso_cacase](https://twitter.com/meso_cacase))  
 This software is distributed under
-[modified BSD license](http://www.opensource.org/licenses/bsd-license.php).
+[modified BSD license](https://www.opensource.org/licenses/bsd-license.php).
